@@ -21,8 +21,12 @@ class JuniorPlugin(object):
         response = ''
 
         try:
-            completion = openai.Completion.create(model="text-davinci-003", prompt=prompt, max_tokens=150)
-            response = completion.choices[0].text.strip()
+            completion = openai.Completion.create(model="gpt-4",
+                                                  messages=[
+                                                      {'role': 'system', 'content': 'You are an assistant to a junior developer. You are helping them with their code.'},
+                                                      {'role': 'user', 'content': prompt}
+                                                    ])
+            response = completion.choices[0].message.content
         except Exception as e:
             response = f'Error: {e}'
 
