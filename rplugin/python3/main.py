@@ -30,6 +30,7 @@ class JuniorPlugin(object):
         except Exception as e:
             response = f'Error: {e}'
 
-        # Feed the query back to the user
-        self.nvim.out_write(response + '\n')
+        # Display the response in a new buffer
+        self.nvim.command('new')
+        self.nvim.current.buffer.append(response)
 
