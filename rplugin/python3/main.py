@@ -12,5 +12,5 @@ class JuniorPlugin(object):
         # Make a GET request
         # response = requests.get('http://example.com')
 
-        # Print the status code
-        self.nvim.out_write(f'Hello World!\n')
+        # Feed the query back to the user
+        self.nvim.out_write(f'You said: {query}\n')
