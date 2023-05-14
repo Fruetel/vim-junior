@@ -21,7 +21,7 @@ class JuniorPlugin(object):
         response = ''
 
         try:
-            completion = openai.Completion.create(model="gpt-4",
+            completion = openai.ChatCompletion.create(model="gpt-4",
                                                   messages=[
                                                       {'role': 'system', 'content': 'You are an assistant to a junior developer. You are helping them with their code.'},
                                                       {'role': 'user', 'content': prompt}
