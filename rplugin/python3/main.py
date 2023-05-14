@@ -12,5 +12,7 @@ class JuniorPlugin(object):
         # Make a GET request
         # response = requests.get('http://example.com')
 
+        query = ' '.join(args)
+
         # Feed the query back to the user
         self.nvim.out_write(f'You said: {query}\n')
