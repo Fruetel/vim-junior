@@ -1,5 +1,6 @@
 import neovim
 import openai
+import os
 
 @neovim.plugin
 class JuniorPlugin(object):
@@ -9,10 +10,10 @@ class JuniorPlugin(object):
         # It expects a file named .junior in the home directory
         # containing a line like this:
         # OPENAI_API_KEY=your-api-key-here
-        with open('~/.junior', 'r') as f:
+        with open(os.path.expanduser('~/.junior'), 'r') as f:
             openai.api_key = f.readline().split('=')[1]
 
-    @neovim.command('chat', nargs='*')
+    @neovim.command('Chat', nargs='*')
     def chat(self, args):
         # You can replace the following lines with the actual API call
         # Make a GET request
@@ -20,8 +21,11 @@ class JuniorPlugin(object):
 
         prompt = ' '.join(args)
 
-        completion = openai.Completion.create(model="text-davinci-003", prompt=prompt)
-        response = completion.choices[0].text
+        try:
+            completion = openai.Completion.create(model="text-davinci-003", prompt=prompt)
+            response = completion.choices[0].text
+        except Exception as e:
+            self.nvim.out_write(f'Error: {e}\n')
 
         # Feed the query back to the user
         self.nvim.out_write(response)
