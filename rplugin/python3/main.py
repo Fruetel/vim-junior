@@ -25,7 +25,7 @@ class JuniorPlugin(object):
                                                   messages=[
                                                       {'role': 'system', 'content': 'You are an assistant to a junior developer. You are helping them with their code.'},
                                                       # Put content of current buffer in a new message from the user
-                                                      {'role': 'user', 'content': "This is the file I'm currently working on: \n" + self.nvim.current.buffer[:]},
+                                                      {'role': 'user', 'content': "This is the file I'm currently working on:\n" + '\n'.join(self.nvim.current.buffer)},
                                                       {'role': 'user', 'content': prompt}
                                                     ])
             response = completion.choices[0].message.content
