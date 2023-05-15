@@ -34,5 +34,4 @@ class JuniorPlugin(object):
 
         # Display the response in a new buffer
         self.nvim.command('new')
-        self.nvim.current.buffer.append('Junior: ')
-        self.nvim.current.buffer.append(response)
+        self.nvim.current.buffer.append(response.split('\n'))
