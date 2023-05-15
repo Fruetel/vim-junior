@@ -21,9 +21,11 @@ class JuniorPlugin(object):
         response = ''
 
         try:
-            completion = openai.ChatCompletion.create(model="gpt-4",
+            completion = openai.ChatCompletion.create(model="gpt-3.5-turbo",
                                                   messages=[
                                                       {'role': 'system', 'content': 'You are an assistant to a junior developer. You are helping them with their code.'},
+                                                      # Put content of current buffer in a new message from the user
+                                                      {'role': 'user', 'content': "This is the file I'm currently working on: \n" + self.nvim.current.buffer[:]},
                                                       {'role': 'user', 'content': prompt}
                                                     ])
             response = completion.choices[0].message.content
@@ -32,5 +34,5 @@ class JuniorPlugin(object):
 
         # Display the response in a new buffer
         self.nvim.command('new')
+        self.nvim.current.buffer.append('Junior: ')
         self.nvim.current.buffer.append(response)
-
