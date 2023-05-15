@@ -2,6 +2,9 @@
 
 **vim-junior** is a Neovim plugin providing chat support using the OpenAI API. You can chat directly in your Neovim environment with the power of OpenAI's language models.
 
+<img width="1440" alt="image" src="https://github.com/Fruetel/vim-junior/assets/8015212/fd2e1014-2738-44e3-91c8-9f9d68664d51">
+vim-junior explaining it's own code
+
 ## Setup Instructions
 
 ### Prerequisites
